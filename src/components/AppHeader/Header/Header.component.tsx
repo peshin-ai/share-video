@@ -1,42 +1,75 @@
-import HomeIcon from "@mui/icons-material/Home";
+import type { FC } from 'react';
+
+import HomeIcon from '@mui/icons-material/Home';
 import {
   AppBar,
-  Button,
+  Container,
   IconButton,
+  Link as MuiLink,
   Toolbar,
   Typography,
   useTheme,
-} from "@mui/material";
+} from '@mui/material';
+import { FieldValues } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
-import { Link } from "react-router-dom";
-import type { FC } from "react";
-import { useTranslation } from "react-i18next";
+import { LoggedContent } from '../LoggedContent';
+import { LoginForm } from '../LoginForm';
 
 type HeaderProps = {
   user?: string;
-  handleLogout?: () => void;
-  handleLogin?: () => void;
+  handleLogout: () => void;
+  handleLogin: (data: FieldValues) => void;
 };
 
 export const Header: FC<HeaderProps> = (props) => {
-  const { user } = props;
+  const { user, handleLogin, handleLogout } = props;
   const theme = useTheme();
 
-  const { t } = useTranslation();
+  const { t: translate } = useTranslation();
+  const onSubmitData = (data: FieldValues) => {
+    handleLogin(data);
+  };
+
+  const onLogout = () => {
+    handleLogout();
+  };
 
   return (
     <AppBar position="sticky">
-      <Toolbar>
-        <IconButton component={Link} to="/home">
-          <HomeIcon />
-        </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          {t("header.appName")}
-        </Typography>
-        <Button component={Link} to="/share" color="inherit">
-          Share
-        </Button>
-      </Toolbar>
+      <Container maxWidth="xl">
+        <Toolbar>
+          <IconButton
+            component={Link}
+            to="/home"
+            sx={{
+              ":hover": {
+                backgroundColor: theme.palette.primary.main,
+              },
+            }}
+          >
+            <HomeIcon sx={{ color: "white" }} />
+          </IconButton>
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+            <MuiLink
+              component={Link}
+              to="/home"
+              color="inherit"
+              sx={{
+                textDecoration: "none",
+              }}
+            >
+              {translate("header.appName")}
+            </MuiLink>
+          </Typography>
+          {!user ? (
+            <LoggedContent onLogout={onLogout} userEmail={user} />
+          ) : (
+            <LoginForm onLogin={onSubmitData} />
+          )}
+        </Toolbar>
+      </Container>
     </AppBar>
   );
 };
