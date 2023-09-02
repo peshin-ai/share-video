@@ -90,9 +90,9 @@ export const Content = (props: ContentProps) => {
               onClick={() => onLikesMovie?.(movieDbId)}
             >
               {typeof isUserVoted !== "undefined" && isUserVoted ? (
-                <VotedLikesIcon />
+                <VotedLikesIcon data-testid="likesVoted-button" />
               ) : (
-                <UnVotedLikesIcon />
+                <UnVotedLikesIcon data-testid="unLikesVoted-button" />
               )}
             </IconButton>
             <IconButton
@@ -107,9 +107,9 @@ export const Content = (props: ContentProps) => {
               onClick={() => onDislikesMovie?.(movieDbId)}
             >
               {typeof isUserVoted !== "undefined" && !isUserVoted ? (
-                <VotedDislikesIcon />
+                <VotedDislikesIcon data-testid="dislikesVoted-button"/>
               ) : (
-                <UnVotedDislikesIcon />
+                <UnVotedDislikesIcon data-testid="unDislikesVoted-button"/>
               )}
             </IconButton>
           </Grid>
