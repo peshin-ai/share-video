@@ -12,6 +12,8 @@ import {
 } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
+import { REGEX_EMAIL } from '../../../constants';
+
 export type LoginFormProps = {
   onLogin: (data: FieldValues) => void;
 };
@@ -19,39 +21,46 @@ export type LoginFormProps = {
 export const LoginForm: FC<LoginFormProps> = (props) => {
   const { onLogin } = props;
   const methods = useForm();
-  const { control } = methods;
+  const { control, getValues } = methods;
   const { t: translate } = useTranslation();
 
   const onSubmitForm = () => {
-    onLogin(methods.getValues());
+    onLogin(getValues());
   };
 
   return (
     <FormProvider {...methods}>
       <form>
         <Grid container spacing={2} justifyContent="center" alignItems="center">
-          <Grid item xs={5}>
+          <Grid item xs={4}>
             <FormTextField
               control={control}
               fieldName="email"
               label={translate("header.email")}
-              rules={{ required: true }}
-              parttern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              validation={{
+                required: true,
+                pattern: REGEX_EMAIL,
+              }}
             />
           </Grid>
-          <Grid item xs={5}>
+          <Grid item xs={4}>
             <FormTextField
               control={control}
               fieldName="password"
               label={translate("header.password")}
               type="password"
-              rules={{ required: true }}
+              validation={{ required: true }}
             />
           </Grid>
 
-          <Grid item xs={2}>
-            <Button variant="contained" color="primary" onClick={onSubmitForm}>
-              {translate("header.login")}
+          <Grid item xs={4}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={onSubmitForm}
+              fullWidth
+            >
+              {translate("header.login.register")}
             </Button>
           </Grid>
         </Grid>
