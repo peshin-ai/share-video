@@ -1,20 +1,20 @@
 export const color = {
   black: "#000000",
   white: "#ffffff",
-  textSecondary: "#006D77", // 5%
-  textPrimary: "#C83E4D", // 87%
+  textSecondary: "#8d99ae", // 5%
+  textPrimary: "#d90429", // 87%
   primary: {
-    main: "#0D41E1",
-    dark: "#2979FF",
-    light: "#0D41E1",
+    main: "#d90429",
+    dark: "#ef233c",
+    light: "#d90429",
     50: "rgba(71, 76, 170, 0.5)", // 50%
     20: "rgba(71, 76, 170, 0.2)", // 20%
     8: "#474CAA14",
   },
   secondary: {
-    main: "#006D77",
-    dark: "#006D77",
-    light: "#006D77",
+    main: "#2b2d42",
+    dark: "#8d99ae",
+    light: "#2b2d42",
     50: "rgba(254, 95, 91, 0.5)", // 50%
     8: "rgba(255, 146, 136, 0.08)",
   },
