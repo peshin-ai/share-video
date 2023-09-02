@@ -10,20 +10,17 @@ import {
 import { useTheme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
 
-export type ContentProps = {
-  movieId: string;
-  movieTitle: string;
-  movieAuthor: string;
-  movieLikes: number;
-  movieDislikes: number;
-  movieDescription: string;
+import { Movie } from '../../models/app.model';
+
+export interface ContentProps extends Movie {
   onLikesMovie?: (itemId: string) => void;
   onDislikesMovie?: (itemId: string) => void;
   isUserVoted?: boolean;
-};
+}
 
 export const Content = (props: ContentProps) => {
   const {
+    _id: movieDbId,
     movieId,
     movieTitle,
     movieAuthor,
@@ -49,16 +46,35 @@ export const Content = (props: ContentProps) => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         ></iframe>
       </Grid>
-      <Grid item container xs={12} md={6} alignItems="flex-start">
-        <Grid item xs={12}>
-          <Typography variant="h1" gutterBottom>
+      <Grid
+        item
+        container
+        xs={12}
+        md={6}
+        alignItems="flex-start"
+        direction="column"
+      >
+        <Grid item>
+          <Typography
+            variant="h1"
+            gutterBottom
+            sx={{ color: theme.palette.primary.light }}
+          >
             {movieTitle}
           </Typography>
         </Grid>
-        <Grid item container xs={12} alignItems="center">
+        <Grid item container alignItems="center">
           <Grid item xs={6}>
             <Typography variant="body1" gutterBottom>
-              Shared by: {movieAuthor}
+              Shared by:
+              <Typography
+                variant="body1"
+                gutterBottom
+                fontWeight={600}
+                component="span"
+              >
+                {` ${movieAuthor}`}
+              </Typography>
             </Typography>
           </Grid>
           <Grid item xs={2}>
@@ -71,7 +87,7 @@ export const Content = (props: ContentProps) => {
                 },
                 color: "green",
               }}
-              onClick={() => onLikesMovie?.(movieId)}
+              onClick={() => onLikesMovie?.(movieDbId)}
             >
               {typeof isUserVoted !== "undefined" && isUserVoted ? (
                 <VotedLikesIcon />
@@ -88,7 +104,7 @@ export const Content = (props: ContentProps) => {
                 },
                 color: "red",
               }}
-              onClick={() => onDislikesMovie?.(movieId)}
+              onClick={() => onDislikesMovie?.(movieDbId)}
             >
               {typeof isUserVoted !== "undefined" && !isUserVoted ? (
                 <VotedDislikesIcon />
@@ -107,7 +123,7 @@ export const Content = (props: ContentProps) => {
             </Typography>
           </Grid>
         </Grid>
-        <Grid item container xs={12} alignContent="center">
+        <Grid item container alignContent="center" columnSpacing={0.5}>
           <Grid item>
             <UnVotedLikesIcon sx={{ color: "green" }} />
           </Grid>
@@ -116,7 +132,7 @@ export const Content = (props: ContentProps) => {
               {movieLikes}
             </Typography>
           </Grid>
-          <Grid item sx={{ pl: theme.spacing(2) }}>
+          <Grid item sx={{ ml: theme.spacing(2) }}>
             <UnVotedDislikesIcon sx={{ color: "red" }} />
           </Grid>
           <Grid item>
@@ -125,7 +141,7 @@ export const Content = (props: ContentProps) => {
             </Typography>
           </Grid>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item>
           <Typography variant="body1" gutterBottom>
             {translate("content.description")}
           </Typography>
