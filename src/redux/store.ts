@@ -4,21 +4,20 @@ import type {
   EmptyObject,
   PreloadedState,
   ThunkMiddleware,
-} from "@reduxjs/toolkit";
-import type { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
+} from '@reduxjs/toolkit';
+import type { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
 
-import type { AppState } from "../models/app.model";
+import type { AppState } from '../models/app.model';
 
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
 
-import { appRootReducer } from "../redux/root-reducer";
+import { appRootReducer } from '../redux/root-reducer';
 
 export const appStore: ToolkitStore<
   EmptyObject & {
     app: AppState;
   },
-  AnyAction,
-  [ThunkMiddleware<CombinedState<{}>, AnyAction>]
+  AnyAction
 > = configureStore({
   reducer: appRootReducer,
 });
