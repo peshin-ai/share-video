@@ -1,6 +1,5 @@
 import type { FC } from 'react';
 
-import { FormTextField } from '@components/Form/FormText';
 import {
   Button,
   Grid,
@@ -13,6 +12,7 @@ import {
 import { useTranslation } from 'react-i18next';
 
 import { REGEX_EMAIL } from '../../../constants';
+import { FormTextField } from '../../Form/FormText';
 
 export type LoginFormProps = {
   onLogin: (data: FieldValues) => void;
@@ -21,11 +21,11 @@ export type LoginFormProps = {
 export const LoginForm: FC<LoginFormProps> = (props) => {
   const { onLogin } = props;
   const methods = useForm();
-  const { control, getValues } = methods;
+  const { control, getValues, handleSubmit } = methods;
   const { t: translate } = useTranslation();
 
   const onSubmitForm = () => {
-    onLogin(getValues());
+    handleSubmit(() => onLogin(getValues()))();
   };
 
   return (
@@ -38,8 +38,11 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
               fieldName="email"
               label={translate("header.email")}
               validation={{
-                required: true,
-                pattern: REGEX_EMAIL,
+                required: "Email is required",
+                pattern: {
+                  value: REGEX_EMAIL,
+                  message: "Invalid email address",
+                },
               }}
             />
           </Grid>
@@ -49,7 +52,9 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
               fieldName="password"
               label={translate("header.password")}
               type="password"
-              validation={{ required: true }}
+              validation={{
+                required: "Password is required",
+              }}
             />
           </Grid>
 
@@ -59,6 +64,7 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
               color="primary"
               onClick={onSubmitForm}
               fullWidth
+              data-testid="loginButton"
             >
               {translate("header.login.register")}
             </Button>
