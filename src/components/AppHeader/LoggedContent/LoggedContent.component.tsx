@@ -21,7 +21,10 @@ export const LoggedContent: FC<LoggedContentProps> = (props) => {
   return (
     <>
       <Typography variant="h6" pr={theme.spacing(10)}>
-        Welcome {userEmail}
+        Welcome
+        <Typography variant="h6" component="span">
+          {` ${userEmail}`}
+        </Typography>
       </Typography>
       <Button
         component={Link}
