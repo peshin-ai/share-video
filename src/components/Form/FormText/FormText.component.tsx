@@ -27,10 +27,10 @@ export type FormTextProps = FieldValues &
     inputStyle?: object;
     label?: string;
     onKeyDown?: KeyboardEventHandler;
-    symbol?: ReactElement | string;
     testID?: string;
     validation?: RegisterOptions;
     hiddenLabel?: boolean;
+    maxRow?: number;
   };
 
 type ControllerFieldType = Partial<FieldValues> & {
@@ -42,13 +42,13 @@ export const FormTextField: FC<FormTextProps> = (props: FormTextProps) => {
     fieldName,
     control,
     label,
-    symbol,
     autoComplete = "new-password",
     validation,
     testID,
     inputStyle,
     inputProps = {},
     onKeyDown,
+    maxRow = 1,
     hiddenLabel = false,
     ...rest
   } = props;
@@ -79,30 +79,31 @@ export const FormTextField: FC<FormTextProps> = (props: FormTextProps) => {
           hiddenLabel={hiddenLabel}
           InputLabelProps={{
             sx: {
-              color: theme.palette.common.black,
+              color: theme.palette.grey[500],
               "&.Mui-error": {
                 color: theme.palette.error.main,
               },
               "&.Mui-focused": {
-                color: theme.palette.common.black,
+                color: theme.palette.primary.light,
               },
               "& .MuiFormLabel-asterisk": {
                 color: theme.palette.error.main,
               },
             },
           }}
+          multiline={maxRow > 1}
+          rows={maxRow}
+          maxRows={maxRow}
           InputProps={{
             disableUnderline: true,
-            endAdornment: symbol,
             sx: {
               "input::-ms-reveal,input::-ms-clear": {
                 display: "none",
               },
-              // your root styles
               "&.MuiInputBase-root": {
                 background: theme.palette.common.white,
+                borderRadius: theme.spacing(1),
                 "&.MuiFilledInput-root:hover": {
-                  // your root styles but with even higher CSS specificity
                   backgroundColor: theme.palette.common.white,
                 },
               },
@@ -113,6 +114,7 @@ export const FormTextField: FC<FormTextProps> = (props: FormTextProps) => {
             "&.MuiTextField-root": {
               width: "100%",
               backgroundColor: theme.palette.grey[50],
+              borderRadius: theme.spacing(1),
             },
           }}
           id={fieldName}
