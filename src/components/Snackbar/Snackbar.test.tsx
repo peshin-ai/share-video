@@ -1,17 +1,20 @@
-import '@testing-library/jest-dom';
-
-import { jest } from '@jest/globals';
 import {
   fireEvent,
   render,
   screen,
 } from '@testing-library/react';
+import {
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 
 import { CustomizedSnackbar } from './Snackbar.component';
 
 describe("CustomizedSnackbars", () => {
   it("renders correctly with open=true", () => {
-    const handleClose = jest.fn();
+    const handleClose = vi.fn();
 
     render(
       <CustomizedSnackbar
@@ -22,19 +25,16 @@ describe("CustomizedSnackbars", () => {
       />
     );
 
-    // Ensure the Snackbar and Alert components are rendered
     expect(screen.getByRole("alert")).toBeInTheDocument();
     expect(screen.getByText("Success message")).toBeInTheDocument();
 
-    // Simulate closing the Snackbar
-    fireEvent.click(screen.getByRole("button")); // Assuming there's a close button in your Snackbar
+    fireEvent.click(screen.getByRole("button"));
 
-    // Ensure the handleClose function is called
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
 
   it("does not render when open=false", () => {
-    const handleClose = jest.fn();
+    const handleClose = vi.fn();
 
     render(
       <CustomizedSnackbar
@@ -45,7 +45,6 @@ describe("CustomizedSnackbars", () => {
       />
     );
 
-    // Ensure the Snackbar and Alert components are not rendered
     expect(screen.queryByRole("alert")).not.toBeInTheDocument();
   });
 });
