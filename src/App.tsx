@@ -23,20 +23,11 @@ import {
   selectGetUserToken,
 } from './redux/appStore/app.selectors';
 import { appActions } from './redux/appStore/app.slice';
-import { checkEmpty } from './utils';
 
 function App() {
   const appDispatch = useAppDispatch();
   const handleUserLogin = (data: FieldValues) => {
-    if (checkEmpty(data.email) || checkEmpty(data.password)) {
-      appDispatch(appActions.setSnackbarOpen());
-      appDispatch(appActions.setSnackbarStatus("error"));
-      appDispatch(
-        appActions.setSnackbarMessage("Please input email and password")
-      );
-    } else {
-      appDispatch(handleLogin(data as userLoginType));
-    }
+    appDispatch(handleLogin(data as userLoginType));
   };
 
   const userEmail = useSelector(selectGetUserEmail);
