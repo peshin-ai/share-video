@@ -18,13 +18,13 @@ import { LoggedContent } from '../LoggedContent';
 import { LoginForm } from '../LoginForm';
 
 type HeaderProps = {
-  user?: string;
+  userEmail?: string;
   handleLogout: () => void;
   handleLogin: (data: FieldValues) => void;
 };
 
 export const Header: FC<HeaderProps> = (props) => {
-  const { user, handleLogin, handleLogout } = props;
+  const { userEmail, handleLogin, handleLogout } = props;
   const theme = useTheme();
 
   const { t: translate } = useTranslation();
@@ -37,15 +37,22 @@ export const Header: FC<HeaderProps> = (props) => {
   };
 
   return (
-    <AppBar position="sticky">
+    <AppBar
+      position="sticky"
+      sx={{ background: theme.palette.secondary.light }}
+    >
       <Container maxWidth="xl">
-        <Toolbar>
+        <Toolbar
+          sx={{
+            height: "86px",
+          }}
+        >
           <IconButton
             component={Link}
             to="/home"
             sx={{
               ":hover": {
-                backgroundColor: theme.palette.primary.main,
+                backgroundColor: "transparent",
               },
             }}
           >
@@ -63,8 +70,8 @@ export const Header: FC<HeaderProps> = (props) => {
               {translate("header.appName")}
             </MuiLink>
           </Typography>
-          {!user ? (
-            <LoggedContent onLogout={onLogout} userEmail={user} />
+          {userEmail ? (
+            <LoggedContent onLogout={onLogout} userEmail={userEmail} />
           ) : (
             <LoginForm onLogin={onSubmitData} />
           )}
