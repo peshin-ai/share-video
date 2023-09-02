@@ -1,7 +1,6 @@
 {
 	"header.appName": "Funny Movies",
-	"header.login": "Login",
-	"header.signup": "Sign Up",
+	"header.login.register": "Login / Register",
 	"header.share": "Share",
 	"header.email": "Email",
 	"header.password": "Password",
