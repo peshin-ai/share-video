@@ -108,7 +108,7 @@ export const ShareForm = (props: ShareFormProps) => {
 
             <Grid item xs={3} container alignItems="flex-start">
               <Typography variant="body1" gutterBottom>
-                Description:
+                Description
               </Typography>
             </Grid>
             <Grid item xs={9}>
