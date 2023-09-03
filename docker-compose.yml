@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  share_movie_fe:
+    container_name: share_movie_fe
+    ports:
+      - 8080:8080
+    working_dir: /app
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: ./
+        target: /app
+    tty: true
+
