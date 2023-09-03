@@ -12,6 +12,22 @@ export default defineConfig({
     setupFiles: "./src/vitest-setup.ts",
     coverage: {
       reporter: ["text", "json", "html"],
+      exclude: [
+        "**/node_modules/**",
+        "**/dist/**",
+        "**/coverage/**",
+        "**/public/**",
+        "**/vite.config.ts",
+        "**/vitest.config.ts",
+        "**/src/vitest-setup.ts",
+        "**/src/main.tsx",
+        "**/src/redux/**",
+        "**/src/styles/**",
+        "**/src/index.css",
+        "**/src/i18n.ts",
+        "**/src/constants/**",
+        "**/src/types/**",
+      ],
     },
   },
   resolve: {
