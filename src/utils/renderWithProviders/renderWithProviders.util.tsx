@@ -15,9 +15,12 @@ import {
   ThemeProvider,
 } from '@mui/material';
 import { render } from '@testing-library/react';
+import { HelmetProvider } from 'react-helmet-async';
+import { I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
+import i18n from '../../i18n';
 import { setupStore } from '../../redux/store';
 import { baseTheme } from '../../styles/theme';
 
@@ -38,12 +41,16 @@ export const renderWithProviders = (
   // eslint-disable-next-line @typescript-eslint/ban-types
   function Wrapper({ children }: PropsWithChildren<{}>): ReactElement {
     return (
-      <Provider store={store}>
-        <ThemeProvider theme={baseTheme}>
-          <CssBaseline />
-          <BrowserRouter>{children}</BrowserRouter>
-        </ThemeProvider>
-      </Provider>
+      <HelmetProvider>
+        <Provider store={store}>
+          <ThemeProvider theme={baseTheme}>
+          <I18nextProvider i18n={i18n}>
+            <CssBaseline />
+            <BrowserRouter>{children}</BrowserRouter>
+          </I18nextProvider>
+          </ThemeProvider>
+        </Provider>
+      </HelmetProvider>
     );
   }
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
