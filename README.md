@@ -18,7 +18,9 @@ The Funny Movie Project is a web-based platform or mobile app that allows users 
 
 ## Require environment:
 NodeJS: ^18.15.0
+<br/>
 NPX/NPM: ^6.14.8
+<br/>
 Yarn: ^1.22.19
 
 ## How to start project?
