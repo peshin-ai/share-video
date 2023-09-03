@@ -4,10 +4,12 @@ WORKDIR /app
 
 COPY package*.json .
 
+ENV VITE_API_BASE_URL=http://localhost:5000
+
 RUN yarn install
 
 COPY . .
 
-EXPOSE 8080
+EXPOSE 3000
 
 CMD [ "yarn", "run", "dev" ]

@@ -3,12 +3,15 @@ version: "3"
 services:
   share_movie_fe:
     container_name: share_movie_fe
+    image: share_movie_fe:v1.0.5
     ports:
-      - 8080:8080
+      - 3000:3000
     working_dir: /app
     build: 
       context: .
       dockerfile: Dockerfile
+    environment:
+      - VITE_API_BASE_URL=http://localhost:5000
     volumes:
       - type: bind
         source: ./
