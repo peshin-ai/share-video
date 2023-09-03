@@ -81,7 +81,7 @@ yarn install
 1. Go to file `docker-compose.yml`
 2. Increase number for Image Tag 
 3. run docker command to build
-> can user options `--buil` `--no-recreate`
+> can use options `--buil` `--no-recreate`
 ``` 
 docker-compose up <options>
 ```
