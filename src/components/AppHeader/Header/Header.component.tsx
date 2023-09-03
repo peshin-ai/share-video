@@ -50,6 +50,7 @@ export const Header: FC<HeaderProps> = (props) => {
           <IconButton
             component={Link}
             to="/home"
+            data-testid="homeButton"
             sx={{
               ":hover": {
                 backgroundColor: "transparent",
