@@ -2,7 +2,7 @@ import type { ReactElement } from 'react';
 
 import { Box } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { sliceMovieURL } from '@utils/sliceMovieURL/sliceMovieURL';
+import { sliceMovieURL } from '@utils/sliceMovieURL/sliceMovieURL.util';
 import { Helmet } from 'react-helmet-async';
 import {
   FormProvider,
