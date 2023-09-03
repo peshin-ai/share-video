@@ -16,6 +16,26 @@ The Funny Movie Project is a web-based platform or mobile app that allows users 
 - **ESLint**: ESLint is a widely-used static code analysis tool for JavaScript and TypeScript, designed to help developers maintain consistent coding styles and catch potential errors early in the development process. It enforces coding standards and best practices defined in configuration files, offering a highly customizable and extensible system. ESLint can identify issues like syntax errors, code complexity, and style violations, making codebases more readable and maintainable.
 - **Yarn**: Yarn is a popular package manager for JavaScript and Node.js applications. It was developed by Facebook to address some limitations of npm. Yarn offers faster and more reliable package installations by caching packages, parallelizing downloads, and ensuring consistent dependency resolution. It simplifies project management with features like workspaces, which enable monorepo setups.
 
+## Project Structure:
+### Main Structure
+```
+public -> default of application, we will do some changes when we config mainfest.
+src -> this is main folder
+ |_ assets -> contain images, svg icon
+ |_ components -> contain all global components
+ |_ contants -> contain all global contants
+ |_ hooks -> contain hooks
+ |_ locales -> contain 2 files for 2 languages en and vi
+ |_ models -> contain type of redux states
+ |_ pages -> contain pages
+ |_ redux -> manage global state, do call api with reduxThunk and Axios
+ |_ style -> contain color, config theme in global
+ |_ types -> contain global types
+ |_ utils -> contain functions to handle logic
+ ...
+...
+```
+
 ## Require environment:
 NodeJS: ^18.15.0
 <br/>
