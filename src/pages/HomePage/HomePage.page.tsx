@@ -52,7 +52,6 @@ export const HomePage = (): ReactElement => {
   };
 
   const movies = useSelector(selectGetMovies);
-  console.log(movies);
 
   // This will render only once at the first time
   useEffect(() => {
