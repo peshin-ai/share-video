@@ -1,22 +1,22 @@
-type Value = string | number | boolean | object | Array<unknown>;
+type Value = string | number | boolean | object | Array<unknown> | undefined | null;
 
 export const checkEmpty = (value: Value) => {
   let isEmpty = false;
 
   if (value === undefined || value === null) {
-    isEmpty = true;
+    return isEmpty = true;
   }
 
   if (typeof value === "string" && value.trim() === "") {
-    isEmpty = true;
+    return isEmpty = true;
   }
 
   if (Array.isArray(value) && value.length === 0) {
-    isEmpty = true;
+    return isEmpty = true;
   }
 
   if (typeof value === "object" && Object.keys(value).length === 0) {
-    isEmpty = true;
+    return isEmpty = true;
   }
 
   return isEmpty;
