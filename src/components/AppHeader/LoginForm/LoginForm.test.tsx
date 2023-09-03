@@ -1,25 +1,19 @@
-import {
-  fireEvent,
-  render,
-} from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
+import { renderWithProviders } from '@utils/index';
 import { FieldValues } from 'react-hook-form';
-import { I18nextProvider } from 'react-i18next';
 import {
   expect,
   it,
   vi,
 } from 'vitest';
 
-import i18n from '../../../i18n';
 import { LoginForm } from './LoginForm.component';
 
 describe("LoginForm submits data correctly", () => {
   const onLoginMock = vi.fn((data: FieldValues) => data);
   it("renders with default props", () => {
-    const { getByText } = render(
-      <I18nextProvider i18n={i18n}>
-        <LoginForm onLogin={onLoginMock} />
-      </I18nextProvider>
+    const { getByText } = renderWithProviders(
+      <LoginForm onLogin={onLoginMock} />
     );
 
     const emailInput = getByText("Email");
@@ -32,10 +26,8 @@ describe("LoginForm submits data correctly", () => {
   });
 
   it("renders with default props", () => {
-    const { getByTestId } = render(
-      <I18nextProvider i18n={i18n}>
-        <LoginForm onLogin={onLoginMock} />
-      </I18nextProvider>
+    const { getByTestId } = renderWithProviders(
+      <LoginForm onLogin={onLoginMock} />
     );
 
     const emailInput = getByTestId("email");

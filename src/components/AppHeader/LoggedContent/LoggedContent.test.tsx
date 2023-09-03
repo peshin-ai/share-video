@@ -1,13 +1,10 @@
 import {
   fireEvent,
-  render,
   screen,
 } from '@testing-library/react';
-import { I18nextProvider } from 'react-i18next';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { renderWithProviders } from '@utils/index';
 import { vi } from 'vitest';
 
-import i18n from '../../../i18n';
 import { LoggedContent } from './LoggedContent.component';
 
 describe("LoggedContent", () => {
@@ -15,12 +12,8 @@ describe("LoggedContent", () => {
   const onLogout = vi.fn();
 
   beforeEach(() => {
-    render(
-      <I18nextProvider i18n={i18n}>
-        <Router>
-          <LoggedContent userEmail={userEmail} onLogout={onLogout} />
-        </Router>
-      </I18nextProvider>
+    renderWithProviders(
+      <LoggedContent userEmail={userEmail} onLogout={onLogout} />
     );
   });
 
