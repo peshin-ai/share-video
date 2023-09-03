@@ -78,17 +78,14 @@ yarn install
 ## How to deploy project? 
 > Assume you have project and do some changes
 
-**For the first time:**
+1. Go to file `docker-compose.yml`
+2. Increase number for Image Tag 
+3. run docker command to build
+> can user options `--buil` `--no-recreate`
 ``` 
-docker-compose up --build --no-recreate
+docker-compose up <options>
 ```
-
-**Next time:**
+4. run docker command to run Image
 ```
-docker-compose up --build --no-recreate
-```
-
-**After deploy**
-```
-docker-run -p 3000:8080 -d YOUR_IMG_TAG
+docker-run -p 3000:3000 -d YOUR_IMG_TAG
 ```
